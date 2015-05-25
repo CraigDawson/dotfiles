@@ -1,0 +1,12 @@
+[submodule "vim/bundle/nerdtree"]
+	path = vim/bundle/nerdtree
+	url = https://github.com/scrooloose/nerdtree.git
+[submodule "vim/bundle/vim-airline"]
+	path = vim/bundle/vim-airline
+	url = https://github.com/bling/vim-airline
+[submodule "vim/bundle/"]
+	path = vim/bundle/pyflakes-pathogen
+	url = https://github.com/mitechie/pyflakes-pathogen
+[submodule "vim/bundle/"]
+	path = vim/bundle/python-syntax
+	url = https://github.com/hdima/python-syntax

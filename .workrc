@@ -1,0 +1,12 @@
+# cXd  _r1000 Work/site/machine related .bashrc items
+# Created  : Sun 09 Apr 2017 07:49:18 PM EDT
+# Modified : Tue 11 Apr 2017 07:57:46 PM EDT
+#
+# Android items
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export ANDROID_VIEW_CLIENT_HOME=$HOME/Development/AndroidViewClient
+
+export PATH=$HOME/Library/Android/sdk/platform-tools:$HOME/Library/Android/sdk/tools:$PATH
+
+
+[ -f ~/bin/clnpath ] && export PATH=$(clnpath $PATH)

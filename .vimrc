@@ -1,3 +1,6 @@
+" cXd _r1000
+" Created : Sun 09 Apr 2017 07:51:41 PM EDT
+" Modified: Tue 11 Apr 2017 12:21:11 PM EDT
 " URL: http://vim.wikia.com/wiki/Example_vimrc
 " Authors: http://vim.wikia.com/wiki/Vim_on_Freenode
 " Description: A minimal, but feature rich, example .vimrc. If you are a
@@ -23,6 +26,10 @@ filetype indent plugin on
 " Enable syntax highlighting
 syntax on
 
+" 256 color
+set t_Co=256
+"set t_AB=^[[48;5;%dm
+"set t_AF=^[[38;5;%dm
 
 "------------------------------------------------------------
 " Must have options {{{1
@@ -65,7 +72,7 @@ set incsearch
 " such, it may be a good idea to disable them and use the securemodelines
 " script, <http://www.vim.org/scripts/script.php?script_id=1876>.
 " set nomodeline
-
+"
 
 "------------------------------------------------------------
 " Usability options {{{1
@@ -159,7 +166,8 @@ set expandtab
 
 
 "------------------------------------------------------------
-set guifont=Inconsolata-g\ Medium\ 12
+"set guifont=Inconsolata-g:h16
+set guifont=InconsolataGo:h19
 set popt=paper:letter,duplex:long
 
 " Go to last file(s) if invoked without arguments.
@@ -171,14 +179,48 @@ set popt=paper:letter,duplex:long
 "autocmd VimEnter * nested if argc() == 0 && filereadable($HOME . "/.vim/Session.vim") |
 "    \ execute "source " . $HOME . "/.vim/Session.vim"
 
+" For https://github.com/hdima/python-syntax (loaded by pathogen)
 let python_highlight_all = 1
 
+" For https://github.com/mitechie/pyflakes-pathogen
 filetype off
+if has("gui_running")
+    highlight SpellBad term=underline gui=undercurl guisp=Orange
+"else
+"    execute pathogen#infect()
+"    call pathogen#helptags()
+endif 
 execute pathogen#infect()
-"call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
 
 syntax on                           " syntax highlighing
 filetype on                          " try to detect filetypes
 filetype plugin indent on    " enable loading indent file for filetype
 au BufRead,BufNewFile *.py set ft=python
+
+" Pymode settings
+let g:pymode_folding = 0
+let g:pymode_lint_on_fly = 1
+let g:pymode_lint_ignore = "E501,W0612"
+let g:pymode_doc = 1
+let g:pymode_rope_lookup_project = 0
+
+" No folding for markdown
+let g:pandoc#modules#disabled = ["folding"]
+
+set grepprg=rg\ --vimgrep
+
+set rtp+=/usr/local/opt/fzf
+" :so /usr/local/Cellar/fzf/0.16.1/plugin/fzf.vim
+
+syntax enable
+if has('gui_running')
+    set background=light
+    colorscheme solarized
+endif
+let g:solarized_termcolors=256
+
+autocmd FileType python setlocal omnifunc=RopeCompleteFunc
+
+set title
+
